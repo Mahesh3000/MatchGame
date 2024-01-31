@@ -66,9 +66,16 @@ const MatchGame = ({tabsList, imagesList}) => {
     setGameOver(false)
     setSeconds(initialSeconds)
     setActiveTab(tabsList[0].tabId)
+    setScores(0)
   }
 
   console.log(gameOver, 'lll')
+
+  useEffect(() => {
+    if (seconds === 0) {
+      setGameOver(true)
+    }
+  }, [seconds])
 
   return (
     <div>
@@ -79,7 +86,7 @@ const MatchGame = ({tabsList, imagesList}) => {
           className="appLogo"
         />
         <div className="header2">
-          <div className="fonts">Score:</div>
+          <p className="fonts">Score:</p>
           <div className="scoreFont">{scores}</div>
           <div className="header3">
             <img
@@ -87,7 +94,7 @@ const MatchGame = ({tabsList, imagesList}) => {
               alt="timer"
               className="timerLogo"
             />
-            <div className="scoreFont">{seconds} Sec</div>
+            <p className="scoreFont">{seconds} Sec</p>
           </div>
         </div>
       </div>
@@ -115,7 +122,7 @@ const MatchGame = ({tabsList, imagesList}) => {
               <div>
                 <img
                   src={image.thumbnailUrl}
-                  alt={image.category}
+                  alt="thumbnail"
                   className="slectimhecss"
                   onClick={() => handleImageClick(image)}
                 />
@@ -135,7 +142,7 @@ const MatchGame = ({tabsList, imagesList}) => {
                   className="trophycss"
                 />
               </div>
-              <div className="fonts">Your Score</div>
+              <p className="fonts">YOUR SCORE</p>
               <div className="scoreFont">{scores}</div>
               <div>
                 <img
@@ -143,7 +150,7 @@ const MatchGame = ({tabsList, imagesList}) => {
                   alt="reset"
                   className="restcss"
                 />
-                <button onClick={handleReset}>play Again</button>
+                <button onClick={handleReset}>PLAY AGAIN</button>
               </div>
             </div>
           </div>
